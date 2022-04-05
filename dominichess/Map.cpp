@@ -2,6 +2,8 @@
 #include "Graphics.h"
 
 Map::Map(size_t offset_x, size_t offset_y)
+	:
+	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y - 50})
 {
 	{
 		bool revert = false;
@@ -57,6 +59,8 @@ void Map::Draw(Graphics& gfx)
 	{
 		f.Draw(gfx);
 	}
+
+	title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
 }
 
 void Map::DetectObj(int x, int y)
@@ -74,6 +78,8 @@ void Map::DetectObj(int x, int y)
 					c.Select();
 					f.Select();
 
+					SetTitle("Make a step!");
+
 					break;
 				}
 			}
@@ -87,6 +93,8 @@ void Map::DetectObj(int x, int y)
 						f.MoveTo(c.GetRow(), c.GetCol());
 
 						UnSelectAll();
+
+						SetTitle("Mr. Bot's turn!");
 
 						break;
 					}
@@ -226,4 +234,9 @@ Figure& Map::GetFigure(size_t row, size_t col)
 			return f;
 		}
 	}
+}
+
+void Map::SetTitle(const std::string& txt) noexcept
+{
+	titleTxt = txt;
 }

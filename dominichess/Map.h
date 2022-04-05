@@ -3,6 +3,7 @@
 #include <vector>
 #include "Cell.h"
 #include "Figure.h"
+#include "Font.h"
 
 class Graphics;
 
@@ -23,7 +24,10 @@ private:
 private:
 	Cell&   GetCell(size_t row, size_t col);
 	Figure& GetFigure(size_t row, size_t col);
+	void	SetTitle(const std::string& txt) noexcept;
 private:
-	std::vector<Cell> cells;
-	std::vector<Figure> figures;
+	std::vector<Cell>	  cells;
+	std::vector<Figure>	  figures;
+	std::pair<Font, Vei2> title;
+	std::string			  titleTxt = "Pick your figure!";
 };
