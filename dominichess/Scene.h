@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "Map.h"
 
 class Scene
 {
@@ -26,4 +27,6 @@ private:
 	std::shared_ptr<Window> wnd; // ”казатель на главное окно 
 
 	/******************************/
+private:
+	Map map;
 };

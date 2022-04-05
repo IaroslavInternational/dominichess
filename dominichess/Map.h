@@ -1,10 +1,10 @@
 #pragma once
 
 #include <vector>
+#include "Cell.h"
+#include "Figure.h"
 
 class Graphics;
-class Figure;
-class Cell;
 
 class Map
 {

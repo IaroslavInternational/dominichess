@@ -22,6 +22,7 @@ void Scene::Render(float dt)
 {
 	/* Отрисовка */
 
+	map.Draw(wnd->Gfx());
 
 	/*************/
 }

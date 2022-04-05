@@ -11,4 +11,5 @@ Cell::Cell(size_t row, size_t col, const std::string& imgPath)
 
 void Cell::Draw(Graphics& gfx)
 {
+	gfx.DrawSpriteNonChroma(row * image.GetWidth(), col * image.GetHeight(), image);
 }
