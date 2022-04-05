@@ -9,6 +9,7 @@ public:
 public:
 	void Draw(Graphics& gfx);
 	bool IsBot() const noexcept;
+	void MoveTo(size_t row, size_t col);
 private:
 	bool IsAI;
 };

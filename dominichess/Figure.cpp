@@ -9,10 +9,16 @@ Figure::Figure(size_t row, size_t col, const std::string& imgPath, bool IsAI, si
 
 void Figure::Draw(Graphics& gfx)
 {
-	gfx.DrawSpriteNonChroma(offset_x + row * image.GetWidth(), offset_y + col * image.GetHeight(), image);
+	gfx.DrawSpriteNonChroma(offset_x + col * image.GetWidth(), offset_y + row * image.GetHeight(), image);
 }
 
 bool Figure::IsBot() const noexcept
 {
 	return IsAI;
+}
+
+void Figure::MoveTo(size_t row, size_t col)
+{
+	this->row = row;
+	this->col = col;
 }

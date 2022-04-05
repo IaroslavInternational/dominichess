@@ -9,8 +9,9 @@ public:
 public:
 	void Draw(Graphics& gfx);
 public:
-	void OnStep()  noexcept;
-	void OffStep() noexcept;
+	void OnStep()   noexcept;
+	void OffStep()  noexcept;
+	bool IsStepAvailable() const noexcept;
 private:
 	bool IsOnStep = false;
 };

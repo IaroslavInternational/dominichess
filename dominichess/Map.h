@@ -27,4 +27,3 @@ private:
 	std::vector<Cell> cells;
 	std::vector<Figure> figures;
 };
-

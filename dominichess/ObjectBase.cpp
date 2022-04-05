@@ -12,8 +12,8 @@ ObjectBase::ObjectBase(size_t row,		size_t col, const std::string& imgPath,
 
 bool ObjectBase::CheckOverlapping(int x, int y) const
 {
-	int x1 = offset_x + row * image.GetWidth();
-	int y1 = offset_y + col * image.GetHeight();
+	int x1 = offset_x + col * image.GetWidth();
+	int y1 = offset_y + row * image.GetHeight();
 	int x2 = x1 + image.GetWidth();
 	int y2 = y1 + image.GetHeight();
 

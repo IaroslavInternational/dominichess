@@ -77,6 +77,21 @@ void Map::DetectObj(int x, int y)
 					break;
 				}
 			}
+
+			if (c.IsStepAvailable())
+			{
+				for (auto& f : figures)
+				{
+					if (f.Selected())
+					{
+						f.MoveTo(c.GetRow(), c.GetCol());
+
+						UnSelectAll();
+
+						break;
+					}
+				}
+			}
 		}
 	}
 }
@@ -116,10 +131,10 @@ void Map::UnSelectAll()
 
 RowsAndCols Map::GetAvailableSteps(size_t row, size_t col)
 {
-	assert(row > 0);
-	assert(col > 0);
-	assert(row <= 8);
-	assert(col <= 8);
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
 
 	RowsAndCols data;
 
@@ -165,10 +180,10 @@ RowsAndCols Map::GetAvailableSteps(size_t row, size_t col)
 
 bool Map::IsFigureExists(size_t row, size_t col)
 {
-	assert(row > 0);
-	assert(col > 0);
-	assert(row <= 8);
-	assert(col <= 8);
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
 
 	for (auto& f : figures)
 	{
@@ -183,10 +198,10 @@ bool Map::IsFigureExists(size_t row, size_t col)
 
 Cell& Map::GetCell(size_t row, size_t col)
 {
-	assert(row > 0);
-	assert(col > 0);
-	assert(row <= 8);
-	assert(col <= 8);
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
 
 	for (auto& c : cells)
 	{
@@ -199,10 +214,10 @@ Cell& Map::GetCell(size_t row, size_t col)
 
 Figure& Map::GetFigure(size_t row, size_t col)
 {
-	assert(row > 0);
-	assert(col > 0);
-	assert(row <= 8);
-	assert(col <= 8);
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
 
 	for (auto& f : figures)
 	{
