@@ -1,7 +1,7 @@
 #include "Map.h"
 #include "Graphics.h"
 
-Map::Map()
+Map::Map(size_t offset_x, size_t offset_y)
 {
 	{
 		bool revert = false;
@@ -13,11 +13,11 @@ Map::Map()
 			{
 				if (revert)
 				{
-					cells.emplace_back(i, j, "Assets\\Images\\dark_cell.png");
+					cells.emplace_back(i, j, "Assets\\Images\\dark_cell.png", offset_x, offset_y);
 				}
 				else
 				{
-					cells.emplace_back(i, j, "Assets\\Images\\light_cell.png");
+					cells.emplace_back(i, j, "Assets\\Images\\light_cell.png", offset_x, offset_y);
 				}
 				revert = !revert;
 			}
@@ -30,7 +30,7 @@ Map::Map()
 	{
 		for (size_t j = 0; j < 3; j++)
 		{
-			figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", true);
+			figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", true, offset_x, offset_y);
 		}
 	}
 
@@ -39,7 +39,7 @@ Map::Map()
 	{
 		for (size_t j = 5; j < 8; j++)
 		{
-			figures.emplace_back(i, j, "Assets\\Images\\light_fig.png", false);
+			figures.emplace_back(i, j, "Assets\\Images\\light_fig.png", false, offset_x, offset_y);
 		}
 	}
 }
@@ -54,5 +54,18 @@ void Map::Draw(Graphics& gfx)
 	for (auto& f : figures)
 	{
 		f.Draw(gfx);
+	}
+}
+
+void Map::DetectObj(int x, int y)
+{
+	for (auto& c : cells)
+	{
+		c.CheckOverlapping(x, y);
+	}
+
+	for (auto& f : figures)
+	{
+		f.CheckOverlapping(x, y);
 	}
 }
