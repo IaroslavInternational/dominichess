@@ -14,6 +14,8 @@ public:
 	void Draw(Graphics& gfx);
 	void DetectObj(int x, int y);
 private:
+	void UnSelectAll();
+private:
 	std::vector<Cell> cells;
 	std::vector<Figure> figures;
 };

@@ -165,6 +165,9 @@
     <ClCompile Include="Figure.cpp">
       <Filter>Исходные файлы\Сцена</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="Figure.h">
       <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

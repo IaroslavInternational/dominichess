@@ -19,8 +19,10 @@ Map::Map(size_t offset_x, size_t offset_y)
 				{
 					cells.emplace_back(i, j, "Assets\\Images\\light_cell.png", offset_x, offset_y);
 				}
+
 				revert = !revert;
 			}
+
 			revert = !revert;
 		}
 	}
@@ -61,11 +63,33 @@ void Map::DetectObj(int x, int y)
 {
 	for (auto& c : cells)
 	{
-		c.CheckOverlapping(x, y);
+		if (c.CheckOverlapping(x, y))
+		{
+			for (auto& f : figures)
+			{
+				if (c.GetRow() == f.GetRow() && c.GetCol() == f.GetCol() && !f.IsBot())
+				{
+					UnSelectAll();
+
+					c.Select();
+					f.Select();
+
+					break;
+				}
+			}
+		}
+	}
+}
+
+void Map::UnSelectAll()
+{
+	for (auto& c : cells)
+	{
+		c.Unselect();
 	}
 
 	for (auto& f : figures)
 	{
-		f.CheckOverlapping(x, y);
+		f.Unselect();
 	}
 }

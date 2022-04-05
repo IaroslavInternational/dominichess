@@ -120,6 +120,7 @@
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="RectI.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Surface2D.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="RectI.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Surface2D.h" />
