@@ -14,10 +14,11 @@ public:
 	virtual void Draw(Graphics& gfx) = 0;
 	bool         CheckOverlapping(int x, int y) const;
 public:
-	size_t GetRow() const noexcept;
-	size_t GetCol() const noexcept;
-	void   Select()       noexcept;
-	void   Unselect()     noexcept;
+	size_t GetRow()   const noexcept;
+	size_t GetCol()   const noexcept;
+	bool   Selected() const noexcept;
+	void   Select()         noexcept;
+	void   Unselect()       noexcept;
 protected:
 	size_t    row;
 	size_t    col;

@@ -47,6 +47,8 @@ void Scene::ProcessInput(float dt)
 		{
 			map.DetectObj(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
 		}
+
+		map.Process();
 	}
 
 	/***********************/

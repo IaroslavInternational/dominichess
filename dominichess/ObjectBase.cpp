@@ -31,6 +31,11 @@ size_t ObjectBase::GetCol() const noexcept
 	return col;
 }
 
+bool ObjectBase::Selected() const noexcept
+{
+	return IsSelected;
+}
+
 void ObjectBase::Select() noexcept
 {
 	IsSelected = true;

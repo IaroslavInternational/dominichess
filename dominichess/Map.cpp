@@ -81,15 +81,134 @@ void Map::DetectObj(int x, int y)
 	}
 }
 
+void Map::Process()
+{
+	for (auto& f : figures)
+	{
+		if (!f.IsBot())
+		{
+			if (f.Selected())
+			{
+				auto steps = GetAvailableSteps(f.GetRow(), f.GetCol());
+
+				for (auto& s : steps)
+				{
+					GetCell(s.first, s.second).OnStep();
+				}
+			}
+		}
+	}
+}
+
 void Map::UnSelectAll()
 {
 	for (auto& c : cells)
 	{
 		c.Unselect();
+		c.OffStep();
 	}
 
 	for (auto& f : figures)
 	{
 		f.Unselect();
+	}
+}
+
+RowsAndCols Map::GetAvailableSteps(size_t row, size_t col)
+{
+	assert(row > 0);
+	assert(col > 0);
+	assert(row <= 8);
+	assert(col <= 8);
+
+	RowsAndCols data;
+
+	size_t rowUp   = row + 1;
+	size_t rowDown = row - 1;
+	size_t colUp   = col + 1;
+	size_t colDown = col - 1;
+
+	if (rowUp >= 0 && rowUp < 8)
+	{
+		if (!IsFigureExists(rowUp, col))
+		{
+			data.emplace_back(rowUp, col);
+		}
+	}
+
+	if (rowDown >= 0 && rowDown < 8)
+	{
+		if (!IsFigureExists(rowDown, col))
+		{
+			data.emplace_back(rowDown, col);
+		}
+	}
+
+	if (colUp >= 0 && colUp < 8)
+	{
+		if (!IsFigureExists(row, colUp))
+		{
+			data.emplace_back(row, colUp);
+		}
+	}
+
+	if (colDown >= 0 && colDown < 8)
+	{
+		if (!IsFigureExists(row, colDown))
+		{
+			data.emplace_back(row, colDown);
+		}
+	}
+
+	return data;
+}
+
+bool Map::IsFigureExists(size_t row, size_t col)
+{
+	assert(row > 0);
+	assert(col > 0);
+	assert(row <= 8);
+	assert(col <= 8);
+
+	for (auto& f : figures)
+	{
+		if (f.GetRow() == row && f.GetCol() == col)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+Cell& Map::GetCell(size_t row, size_t col)
+{
+	assert(row > 0);
+	assert(col > 0);
+	assert(row <= 8);
+	assert(col <= 8);
+
+	for (auto& c : cells)
+	{
+		if (c.GetRow() == row && c.GetCol() == col)
+		{
+			return c;
+		}
+	}
+}
+
+Figure& Map::GetFigure(size_t row, size_t col)
+{
+	assert(row > 0);
+	assert(col > 0);
+	assert(row <= 8);
+	assert(col <= 8);
+
+	for (auto& f : figures)
+	{
+		if (f.GetRow() == row && f.GetCol() == col)
+		{
+			return f;
+		}
 	}
 }
