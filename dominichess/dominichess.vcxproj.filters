@@ -156,6 +156,15 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Исходные файлы\Сцена</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Исходные файлы\Сцена</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Исходные файлы\Сцена</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -250,6 +259,15 @@
     </ClInclude>
     <ClInclude Include="RectI.h">
       <Filter>Заголовочные файлы\Система\Графика\Геометрия</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Заголовочные файлы\Сцена</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

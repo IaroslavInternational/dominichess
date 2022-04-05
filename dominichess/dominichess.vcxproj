@@ -115,8 +115,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="cnpy.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="RectI.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Surface2D.cpp" />
@@ -156,10 +159,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="cnpy.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="EngineFunctions.hpp" />
+    <ClInclude Include="Figure.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="RectI.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Surface2D.h" />
