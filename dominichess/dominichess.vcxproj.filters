@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Dxerr">
+      <UniqueIdentifier>{2b144e38-4e36-4755-9c6f-ce7bdafe689d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Шейдеры">
+      <UniqueIdentifier>{246c933d-909b-4e52-ace4-7be4ab3da27b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Сцена">
+      <UniqueIdentifier>{276dec2f-6bed-4dd9-96e1-5542364f47ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Другое">
+      <UniqueIdentifier>{e72c8dd2-c363-4679-a1aa-059b4ca35655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Сцена">
+      <UniqueIdentifier>{4135393b-7132-4def-9db3-120b3f6bd9bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Окна">
+      <UniqueIdentifier>{25ad75f6-f43d-4d65-b1d6-797260728c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система">
+      <UniqueIdentifier>{29e3f38a-9c2e-4c96-974e-5dab09a0ebda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Исключения">
+      <UniqueIdentifier>{29cd9656-8677-4f16-b70a-685a60b20c35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Графика">
+      <UniqueIdentifier>{fd45e8bf-0044-43d4-92ed-33c9a6a3668b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Утилиты">
+      <UniqueIdentifier>{cad93636-c014-49b5-9609-0240539f4b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Переферия">
+      <UniqueIdentifier>{5dd8453a-2323-434b-94ae-a819b4714047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Переферия\Мышь">
+      <UniqueIdentifier>{dd1a5192-950a-4940-9833-5bd902fe600b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Переферия\Клавиатура">
+      <UniqueIdentifier>{3308c7a7-e91c-4946-ab2c-93792b6fc286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Макросы">
+      <UniqueIdentifier>{c62c91bc-50e8-4796-8319-6caf607ee4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система">
+      <UniqueIdentifier>{dc3d86a8-5db2-409d-91b9-36e91b95ec9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Окна">
+      <UniqueIdentifier>{6345868b-bde3-499b-be56-bbde78ad45ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Исключения">
+      <UniqueIdentifier>{2fc71fb7-c196-4775-9e29-4626a870e3b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Переферия">
+      <UniqueIdentifier>{eb34b39e-cd53-4b23-836e-6a782b43cfba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Переферия\Мышь">
+      <UniqueIdentifier>{27119d46-cf3e-4912-88d8-b82eef8b989d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Переферия\Клавиатура">
+      <UniqueIdentifier>{0b705938-5b78-44d6-850e-264db46c7279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Графика">
+      <UniqueIdentifier>{96f94ef6-5f60-41ea-b422-78de3780a3fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Утилиты">
+      <UniqueIdentifier>{7c14a29b-52c0-4c98-ad9b-91f86213fbd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Графика\Цвета">
+      <UniqueIdentifier>{8242f571-1403-487f-8a63-d62d95a0fb17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Графика\Геометрия">
+      <UniqueIdentifier>{51a7cc1b-d896-4466-bef7-775a03e4c7c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Система\Графика\Текст">
+      <UniqueIdentifier>{8a5ce619-cf3d-4a70-bc26-9696e9d7ce33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Графика\Геометрия">
+      <UniqueIdentifier>{f701e7cf-e304-4d05-9746-0e8854147bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Система\Графика\Текст">
+      <UniqueIdentifier>{61c3fbb7-b71c-423d-9e75-9c6b8b1d58c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="dxerr.cpp">
+      <Filter>Dxerr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Исходные файлы\Сцена</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>Исходные файлы\Система\Утилиты</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineUtil.cpp">
+      <Filter>Исходные файлы\Система\Утилиты</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineXM.cpp">
+      <Filter>Исходные файлы\Система\Утилиты</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Исходные файлы\Система\Графика</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Исходные файлы\Система\Переферия\Клавиатура</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Исходные файлы\Система\Переферия\Мышь</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineException.cpp">
+      <Filter>Исходные файлы\Система\Исключения</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Исходные файлы\Окна</Filter>
+    </ClCompile>
+    <ClCompile Include="DxgiInfoManager.cpp">
+      <Filter>Исходные файлы\Система</Filter>
+    </ClCompile>
+    <ClCompile Include="cnpy.cpp">
+      <Filter>Исходные файлы\Система</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsMessageMap.cpp">
+      <Filter>Исходные файлы\Окна</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface2D.cpp">
+      <Filter>Исходные файлы\Система\Графика</Filter>
+    </ClCompile>
+    <ClCompile Include="RectI.cpp">
+      <Filter>Исходные файлы\Система\Графика\Геометрия</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Исходные файлы\Система\Графика\Текст</Filter>
+    </ClCompile>
+    <ClCompile Include="Vei2.cpp">
+      <Filter>Исходные файлы\Система\Утилиты</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Исходные файлы\Система\Утилиты</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="dxerr.h">
+      <Filter>Dxerr</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsThrowMacros.h">
+      <Filter>Заголовочные файлы\Система\Макросы</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsThrowMacros.h">
+      <Filter>Заголовочные файлы\Система\Макросы</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionalNoexcept.h">
+      <Filter>Заголовочные файлы\Система\Макросы</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Заголовочные файлы\Система\Переферия\Клавиатура</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Заголовочные файлы\Система\Переферия\Мышь</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Заголовочные файлы\Система\Графика</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineException.h">
+      <Filter>Заголовочные файлы\Система\Исключения</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTimer.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineUtil.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineXM.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWRL.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Заголовочные файлы\Окна</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsMessageMap.h">
+      <Filter>Заголовочные файлы\Окна</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWin.h">
+      <Filter>Заголовочные файлы\Система</Filter>
+    </ClInclude>
+    <ClInclude Include="cnpy.h">
+      <Filter>Заголовочные файлы\Система</Filter>
+    </ClInclude>
+    <ClInclude Include="DxgiInfoManager.h">
+      <Filter>Заголовочные файлы\Система</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfLog.h">
+      <Filter>Заголовочные файлы\Система</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Заголовочные файлы\Система</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineFunctions.hpp">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface2D.h">
+      <Filter>Заголовочные файлы\Система\Графика</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Заголовочные файлы\Система\Графика\Цвета</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Заголовочные файлы\Система\Графика\Цвета</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Заголовочные файлы\Система\Графика\Текст</Filter>
+    </ClInclude>
+    <ClInclude Include="Vei2.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Заголовочные файлы\Система\Утилиты</Filter>
+    </ClInclude>
+    <ClInclude Include="RectI.h">
+      <Filter>Заголовочные файлы\Система\Графика\Геометрия</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dominichess.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ARGS_32.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXGetErrorDescription.inl">
+      <Filter>Dxerr</Filter>
+    </None>
+    <None Include="DXGetErrorString.inl">
+      <Filter>Dxerr</Filter>
+    </None>
+    <None Include="DXTrace.inl">
+      <Filter>Dxerr</Filter>
+    </None>
+    <None Include="process.json">
+      <Filter>Другое</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="FramebufferVS.hlsl">
+      <Filter>Шейдеры</Filter>
+    </FxCompile>
+    <FxCompile Include="FramebufferPS.hlsl">
+      <Filter>Шейдеры</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
