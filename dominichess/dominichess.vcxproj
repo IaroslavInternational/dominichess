@@ -115,6 +115,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="BotFigure.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="cnpy.cpp" />
     <ClCompile Include="Figure.cpp" />
@@ -150,6 +151,7 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">FramebufferVS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_1</ShaderModel>
     </FxCompile>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Vec2.cpp" />
@@ -160,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="BotFigure.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="cnpy.h" />
     <ClInclude Include="Colors.h" />

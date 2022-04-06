@@ -166,7 +166,10 @@
       <Filter>Исходные файлы\Сцена</Filter>
     </ClCompile>
     <ClCompile Include="ObjectBase.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Сцена</Filter>
+    </ClCompile>
+    <ClCompile Include="BotFigure.cpp">
+      <Filter>Исходные файлы\Сцена</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,7 +276,10 @@
       <Filter>Заголовочные файлы\Сцена</Filter>
     </ClInclude>
     <ClInclude Include="ObjectBase.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="BotFigure.h">
+      <Filter>Заголовочные файлы\Сцена</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +306,7 @@
       <Filter>Другое</Filter>
     </None>
     <None Include="packages.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferVS.hlsl">

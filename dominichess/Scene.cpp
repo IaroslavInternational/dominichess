@@ -45,10 +45,8 @@ void Scene::ProcessInput(float dt)
 	{
 		if (wnd->mouse.LeftIsPressed())
 		{
-			map.DetectObj(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
+			map.Process(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
 		}
-
-		map.Process();
 	}
 
 	/***********************/

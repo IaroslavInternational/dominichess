@@ -1,6 +1,10 @@
 #pragma once
 
+#include <vector>
 #include "Surface2D.h"
+
+using RowAndCol   = std::pair<size_t, size_t>;
+using RowsAndCols = std::vector<RowAndCol>;
 
 class Graphics;
 

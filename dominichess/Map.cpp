@@ -1,6 +1,8 @@
 #include "Map.h"
 #include "Graphics.h"
 
+#include "EngineFunctions.hpp"
+
 Map::Map(size_t offset_x, size_t offset_y)
 	:
 	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y - 50})
@@ -34,7 +36,7 @@ Map::Map(size_t offset_x, size_t offset_y)
 	{
 		for (size_t j = 0; j < 3; j++)
 		{
-			figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", true, offset_x, offset_y);
+			bot_figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", GenerateGoal(), offset_x, offset_y);
 		}
 	}
 
@@ -43,7 +45,7 @@ Map::Map(size_t offset_x, size_t offset_y)
 	{
 		for (size_t j = 5; j < 8; j++)
 		{
-			figures.emplace_back(i, j, "Assets\\Images\\light_fig.png", false, offset_x, offset_y);
+			figures.emplace_back(i, j, "Assets\\Images\\light_fig.png", offset_x, offset_y);
 		}
 	}
 }
@@ -60,10 +62,15 @@ void Map::Draw(Graphics& gfx)
 		f.Draw(gfx);
 	}
 
+	for (auto& bf : bot_figures)
+	{
+		bf.Draw(gfx);
+	}
+
 	title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
 }
 
-void Map::DetectObj(int x, int y)
+void Map::Process(int x, int y)
 {
 	for (auto& c : cells)
 	{
@@ -71,12 +78,19 @@ void Map::DetectObj(int x, int y)
 		{
 			for (auto& f : figures)
 			{
-				if (c.GetRow() == f.GetRow() && c.GetCol() == f.GetCol() && !f.IsBot())
+				if (c.GetRow() == f.GetRow() && c.GetCol() == f.GetCol())
 				{
 					UnSelectAll();
 
 					c.Select();
 					f.Select();
+
+					auto steps = GetAvailableSteps(f.GetRow(), f.GetCol());
+
+					for (auto& s : steps)
+					{
+						GetCell(s.first, s.second).OnStep();
+					}
 
 					SetTitle("Make a step!");
 
@@ -94,29 +108,10 @@ void Map::DetectObj(int x, int y)
 
 						UnSelectAll();
 
-						SetTitle("Mr. Bot's turn!");
+						SetTitle("Mr. Robot's turn!");
 
 						break;
 					}
-				}
-			}
-		}
-	}
-}
-
-void Map::Process()
-{
-	for (auto& f : figures)
-	{
-		if (!f.IsBot())
-		{
-			if (f.Selected())
-			{
-				auto steps = GetAvailableSteps(f.GetRow(), f.GetCol());
-
-				for (auto& s : steps)
-				{
-					GetCell(s.first, s.second).OnStep();
 				}
 			}
 		}
@@ -239,4 +234,33 @@ Figure& Map::GetFigure(size_t row, size_t col)
 void Map::SetTitle(const std::string& txt) noexcept
 {
 	titleTxt = txt;
+}
+
+RowAndCol Map::GenerateGoal()
+{
+	size_t rrow = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+	size_t rcol = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+
+	if (!bot_figures.empty())
+	{
+		for (size_t i = 0; i < bot_figures.size(); i++)
+		{
+			while (bot_figures[i].GetGoal().first == rrow && bot_figures[i].GetGoal().second == rcol)
+			{
+				rrow = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+				rcol = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+
+				i = 0;
+			}	
+		}
+	}
+
+	return { rrow, rcol };
+}
+
+RowAndCol Map::PickRandBotFigure() const
+{
+	size_t rnum = EngineFunctions::GenerateRandomNumber<size_t>(0, 8);
+
+	return { bot_figures[rnum].GetRow(), bot_figures[rnum].GetCol() };
 }
