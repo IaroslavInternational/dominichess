@@ -72,49 +72,84 @@ void Map::Draw(Graphics& gfx)
 
 void Map::Process(int x, int y)
 {
-	for (auto& c : cells)
+	if (!IsAITurn)
 	{
-		if (c.CheckOverlapping(x, y))
+		for (auto& c : cells)
 		{
-			for (auto& f : figures)
-			{
-				if (c.GetRow() == f.GetRow() && c.GetCol() == f.GetCol())
-				{
-					UnSelectAll();
-
-					c.Select();
-					f.Select();
-
-					auto steps = GetAvailableSteps(f.GetRow(), f.GetCol());
-
-					for (auto& s : steps)
-					{
-						GetCell(s.first, s.second).OnStep();
-					}
-
-					SetTitle("Make a step!");
-
-					break;
-				}
-			}
-
-			if (c.IsStepAvailable())
+			if (c.CheckOverlapping(x, y))
 			{
 				for (auto& f : figures)
 				{
-					if (f.Selected())
+					if (c.GetRow() == f.GetRow() && c.GetCol() == f.GetCol())
 					{
-						f.MoveTo(c.GetRow(), c.GetCol());
-
 						UnSelectAll();
 
-						SetTitle("Mr. Robot's turn!");
+						c.Select();
+						f.Select();
+
+						auto steps = GetAvailableSteps(f.GetRow(), f.GetCol());
+
+						for (auto& s : steps)
+						{
+							GetCell(s.first, s.second).OnStep();
+						}
+
+						SetTitle("Make a step!");
 
 						break;
 					}
 				}
+
+				if (c.IsStepAvailable())
+				{
+					for (auto& f : figures)
+					{
+						if (f.Selected())
+						{
+							f.MoveTo(c.GetRow(), c.GetCol());
+
+							UnSelectAll();
+
+							SetTitle("Mr. Robot's turn!");
+							
+							IsAITurn = true;
+							
+							break;
+						}
+					}
+				}
 			}
 		}
+	}
+	else
+	{
+		/* ѕолучение доступных дл€ шага фигур бота */
+		
+		std::vector<size_t> idx;
+
+		for (size_t i = 0; i < bot_figures.size(); i++)
+		{
+			if (!bot_figures[i].IsOnGoal())
+			{
+				if (!GetAvailableSteps(bot_figures[i].GetRow(), bot_figures[i].GetCol()).empty())
+				{
+					idx.push_back(i);
+				}
+			}
+		}
+
+		/*******************************************/
+
+		/* ¬ыбор случайной фигуры среди доступных */
+		
+		size_t fig_id = EngineFunctions::GenerateRandomNumber<int>(0, (int)idx.size() - 1);
+
+		/******************************************/
+
+		auto step = CreatePath(bot_figures[fig_id]);
+		bot_figures[fig_id].MoveTo(step.first, step.second);
+
+		IsAITurn = false;
 	}
 }
 
@@ -141,10 +176,10 @@ RowsAndCols Map::GetAvailableSteps(size_t row, size_t col)
 
 	RowsAndCols data;
 
-	size_t rowUp   = row + 1;
-	size_t rowDown = row - 1;
-	size_t colUp   = col + 1;
-	size_t colDown = col - 1;
+	int rowUp   = row + 1;
+	int rowDown = row - 1;
+	int colUp   = col + 1;
+	int colDown = col - 1;
 
 	if (rowUp >= 0 && rowUp < 8)
 	{
@@ -196,6 +231,14 @@ bool Map::IsFigureExists(size_t row, size_t col)
 		}
 	}
 
+	for (auto& bf : bot_figures)
+	{
+		if (bf.GetRow() == row && bf.GetCol() == col)
+		{
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -238,8 +281,8 @@ void Map::SetTitle(const std::string& txt) noexcept
 
 RowAndCol Map::GenerateGoal()
 {
-	size_t rrow = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
-	size_t rcol = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+	size_t rrow = EngineFunctions::GenerateRandomNumber<int>(5, 7);
+	size_t rcol = EngineFunctions::GenerateRandomNumber<int>(5, 7);
 
 	if (!bot_figures.empty())
 	{
@@ -247,8 +290,8 @@ RowAndCol Map::GenerateGoal()
 		{
 			while (bot_figures[i].GetGoal().first == rrow && bot_figures[i].GetGoal().second == rcol)
 			{
-				rrow = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
-				rcol = EngineFunctions::GenerateRandomNumber<size_t>(5, 7);
+				rrow = EngineFunctions::GenerateRandomNumber<int>(5, 7);
+				rcol = EngineFunctions::GenerateRandomNumber<int>(5, 7);
 
 				i = 0;
 			}	
@@ -258,9 +301,105 @@ RowAndCol Map::GenerateGoal()
 	return { rrow, rcol };
 }
 
-RowAndCol Map::PickRandBotFigure() const
+RowAndCol Map::CreatePath(const BotFigure& fig)
 {
-	size_t rnum = EngineFunctions::GenerateRandomNumber<size_t>(0, 8);
+	auto steps = GetAvailableSteps(fig.GetRow(), fig.GetCol());
 
-	return { bot_figures[rnum].GetRow(), bot_figures[rnum].GetCol() };
+	if (steps.size() == 1)
+	{
+		return steps[0];
+	}
+
+	/*********************************/
+
+	auto dist = fig.GetDistance();
+
+	if (std::abs(dist.first) == 1)
+	{
+		for (auto& s : steps)
+		{
+			if (s.first == fig.GetRow() + dist.first && s.second == fig.GetCol())
+			{
+				return s;
+			}
+		}
+	}
+	else if (std::abs(dist.second) == 1)
+	{
+		for (auto& s : steps)
+		{
+			if (s.first == fig.GetRow() && s.second == fig.GetCol() + dist.second)
+			{
+				return s;
+			}
+		}
+	}
+
+	/*********************************/
+
+	if (dist.first > dist.second)
+	{
+		for (auto& s : steps)
+		{
+			if (fig.GetGoal().second - fig.GetCol() - s.second < dist.second)
+			{
+				return s;
+			}
+		}
+	}
+	else if (dist.first < dist.second)
+	{
+		for (auto& s : steps)
+		{
+			if (fig.GetGoal().first - fig.GetRow() - s.first < dist.first)
+			{
+				return s;
+			}
+		}
+	}
+	else
+	{
+		std::vector<size_t> idx;
+
+		for (size_t i = 0; i < steps.size(); i++)
+		{
+			if (fig.GetGoal().second - fig.GetCol() - steps[i].second < dist.second)
+			{
+				idx.push_back(i);
+				return steps[i];
+			}
+			else if (fig.GetGoal().first - fig.GetRow() - steps[i].first < dist.first)
+			{
+				idx.push_back(i);
+				return steps[i];
+			}
+		}
+
+		if (!idx.empty())
+		{
+			auto ID = EngineFunctions::GenerateRandomNumber<int>(0, int(idx.size() - 1));
+			return steps[idx[ID]];
+		}
+	}
+
+	/*********************************/
+
+	size_t stepbacks = 0;
+
+	for (auto& s : steps)
+	{
+		if (s.first < fig.GetRow() || s.second < fig.GetCol())
+		{
+			stepbacks++;
+		}
+	}
+
+	if (stepbacks == steps.size() && stepbacks != 0)
+	{
+		return steps[EngineFunctions::GenerateRandomNumber<int>(0, stepbacks)];
+	}
+
+	/*********************************/
+
+	return steps[EngineFunctions::GenerateRandomNumber<int>(0, steps.size() - 1)];
 }

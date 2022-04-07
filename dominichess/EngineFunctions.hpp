@@ -47,6 +47,8 @@ namespace EngineFunctions
 
 			return ud(rng);
 		}
+
+		return min;
 	}
 
 	inline size_t static GetScreenRefreshTime()

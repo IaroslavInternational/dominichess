@@ -10,3 +10,13 @@ RowAndCol BotFigure::GetGoal() const noexcept
 {
 	return goal;
 }
+
+bool BotFigure::IsOnGoal() const
+{
+	return row == goal.first && col == goal.second;
+}
+
+std::pair<short int, short int> BotFigure::GetDistance() const
+{
+	return { goal.first - row, goal.second - col };
+}
