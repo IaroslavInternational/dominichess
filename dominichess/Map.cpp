@@ -142,7 +142,7 @@ void Map::Process(int x, int y)
 
 		/* ¬ыбор случайной фигуры среди доступных */
 		
-		size_t fig_id = EngineFunctions::GenerateRandomNumber<int>(0, (int)idx.size() - 1);
+		size_t fig_id = idx[EngineFunctions::IntRandom(0, (int)idx.size() - 1)];
 
 		/******************************************/
 
@@ -281,8 +281,8 @@ void Map::SetTitle(const std::string& txt) noexcept
 
 RowAndCol Map::GenerateGoal()
 {
-	size_t rrow = EngineFunctions::GenerateRandomNumber<int>(5, 7);
-	size_t rcol = EngineFunctions::GenerateRandomNumber<int>(5, 7);
+	size_t rrow = EngineFunctions::IntRandom(5, 7);
+	size_t rcol = EngineFunctions::IntRandom(5, 7);
 
 	if (!bot_figures.empty())
 	{
@@ -290,8 +290,8 @@ RowAndCol Map::GenerateGoal()
 		{
 			while (bot_figures[i].GetGoal().first == rrow && bot_figures[i].GetGoal().second == rcol)
 			{
-				rrow = EngineFunctions::GenerateRandomNumber<int>(5, 7);
-				rcol = EngineFunctions::GenerateRandomNumber<int>(5, 7);
+				rrow = EngineFunctions::IntRandom(5, 7);
+				rcol = EngineFunctions::IntRandom(5, 7);
 
 				i = 0;
 			}	
@@ -341,7 +341,7 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 	{
 		for (auto& s : steps)
 		{
-			if (fig.GetGoal().second - fig.GetCol() - s.second < dist.second)
+			if (fig.GetGoal().second - s.second < dist.second)
 			{
 				return s;
 			}
@@ -351,7 +351,7 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 	{
 		for (auto& s : steps)
 		{
-			if (fig.GetGoal().first - fig.GetRow() - s.first < dist.first)
+			if (fig.GetGoal().first - s.first < dist.first)
 			{
 				return s;
 			}
@@ -363,21 +363,21 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 
 		for (size_t i = 0; i < steps.size(); i++)
 		{
-			if (fig.GetGoal().second - fig.GetCol() - steps[i].second < dist.second)
+			if (fig.GetGoal().second - steps[i].second < dist.second)
 			{
 				idx.push_back(i);
-				return steps[i];
+				//return steps[i];
 			}
-			else if (fig.GetGoal().first - fig.GetRow() - steps[i].first < dist.first)
+			else if (fig.GetGoal().first - steps[i].first < dist.first)
 			{
 				idx.push_back(i);
-				return steps[i];
+			//	return steps[i];
 			}
 		}
 
 		if (!idx.empty())
 		{
-			auto ID = EngineFunctions::GenerateRandomNumber<int>(0, int(idx.size() - 1));
+			auto ID = EngineFunctions::IntRandom(0, int(idx.size() - 1));
 			return steps[idx[ID]];
 		}
 	}
@@ -396,10 +396,10 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 
 	if (stepbacks == steps.size() && stepbacks != 0)
 	{
-		return steps[EngineFunctions::GenerateRandomNumber<int>(0, stepbacks)];
+		return steps[EngineFunctions::IntRandom(0, stepbacks - 1)];
 	}
 
 	/*********************************/
 
-	return steps[EngineFunctions::GenerateRandomNumber<int>(0, steps.size() - 1)];
+	return steps[EngineFunctions::IntRandom(0, steps.size() - 1)];
 }

@@ -30,5 +30,5 @@ private:
 	std::vector<Figure>	   figures;
 	std::pair<Font, Vei2>  title;
 	std::string			   titleTxt = "Pick your figure!";
-	bool				   IsAITurn = true;
+	bool				   IsAITurn = false;
 };
