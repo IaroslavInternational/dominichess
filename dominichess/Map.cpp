@@ -5,7 +5,8 @@
 
 Map::Map(size_t offset_x, size_t offset_y)
 	:
-	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y - 50})
+	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y - 50}),
+	label_score(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y + 625})
 {
 	{
 		bool revert = false;
@@ -36,7 +37,7 @@ Map::Map(size_t offset_x, size_t offset_y)
 	{
 		for (size_t j = 0; j < 3; j++)
 		{
-			bot_figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", GenerateGoal(), offset_x, offset_y);
+			bot_figures.emplace_back(i, j, "Assets\\Images\\dark_fig.png", RowAndCol({ i + 5, j + 5 }), offset_x, offset_y);
 		}
 	}
 
@@ -67,7 +68,24 @@ void Map::Draw(Graphics& gfx)
 		bf.Draw(gfx);
 	}
 
-	title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
+	std::ostringstream oss;
+
+	if (AIScore == 9)
+	{
+		oss << "AI Steps: " << AISteps;
+		title.first.DrawText(oss.str(), title.second, Colors::White, gfx);
+	}
+	else
+	{
+		oss.str("");
+
+		oss << "Your score: " << UserScore << " Mr. Robot's score: " << AIScore;
+
+		title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
+		label_score.first.DrawText(oss.str(), label_score.second, Colors::White, gfx);
+
+	}
+
 }
 
 void Map::Process(int x, int y)
@@ -113,6 +131,7 @@ void Map::Process(int x, int y)
 							SetTitle("Mr. Robot's turn!");
 							
 							IsAITurn = true;
+							CountScore();
 							
 							break;
 						}
@@ -121,8 +140,18 @@ void Map::Process(int x, int y)
 			}
 		}
 	}
-	else
+	else if(AIScore != 9)
 	{
+		if (AISteps != 0 && AISteps % 4 == 0 && AIScore >= 3)
+		{
+			Optimize();
+			CountScore();
+
+			AISteps++;
+
+			return;
+		}
+
 		/* ѕолучение доступных дл€ шага фигур бота */
 		
 		std::vector<size_t> idx;
@@ -149,7 +178,10 @@ void Map::Process(int x, int y)
 		auto step = CreatePath(bot_figures[fig_id]);
 		bot_figures[fig_id].MoveTo(step.first, step.second);
 
+		AISteps++;
 		IsAITurn = false;
+
+		CountScore();
 	}
 }
 
@@ -242,6 +274,24 @@ bool Map::IsFigureExists(size_t row, size_t col)
 	return false;
 }
 
+bool Map::IsBotFigureExists(size_t row, size_t col)
+{
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
+
+	for (auto& bf : bot_figures)
+	{
+		if (bf.GetRow() == row && bf.GetCol() == col)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 Cell& Map::GetCell(size_t row, size_t col)
 {
 	assert(row >= 0);
@@ -274,9 +324,66 @@ Figure& Map::GetFigure(size_t row, size_t col)
 	}
 }
 
+BotFigure& Map::GetBotFigure(size_t row, size_t col)
+{
+	assert(row >= 0);
+	assert(col >= 0);
+	assert(row < 8);
+	assert(col < 8);
+
+	for (auto& bf : bot_figures)
+	{
+		if (bf.GetRow() == row && bf.GetCol() == col)
+		{
+			return bf;
+		}
+	}
+}
+
+BotFigure& Map::GetBotFigureByGoal(size_t row, size_t col)
+{
+	for (auto& bf : bot_figures)
+	{
+		if (bf.GetGoal().first == row && bf.GetGoal().second == col)
+		{
+			return bf;
+		}
+	}
+}
+
+void Map::SwapGoals(BotFigure& lhs, BotFigure& rhs)
+{
+	auto g = lhs.GetGoal();
+
+	lhs.SetGoal(rhs.GetGoal().first, rhs.GetGoal().second);
+	rhs.SetGoal(g.first, g.second);
+}
+
 void Map::SetTitle(const std::string& txt) noexcept
 {
 	titleTxt = txt;
+}
+
+void Map::CountScore()
+{
+	AIScore   = 0;
+	UserScore = 0;
+
+	for (auto& bf : bot_figures)
+	{
+		if (bf.GetRow() > 4 && bf.GetCol() > 4)
+		{
+			UserScore++;
+		}
+	}
+
+	for (auto& f : figures)
+	{
+		if (f.GetRow() < 3 && f.GetCol() < 3)
+		{
+			UserScore++;
+		}
+	}
 }
 
 RowAndCol Map::GenerateGoal()
@@ -366,19 +473,16 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 			if (fig.GetGoal().second - steps[i].second < dist.second)
 			{
 				idx.push_back(i);
-				//return steps[i];
 			}
 			else if (fig.GetGoal().first - steps[i].first < dist.first)
 			{
 				idx.push_back(i);
-			//	return steps[i];
 			}
 		}
 
 		if (!idx.empty())
 		{
-			auto ID = EngineFunctions::IntRandom(0, int(idx.size() - 1));
-			return steps[idx[ID]];
+			return steps[EngineFunctions::IntRandom(0, int(idx.size() - 1))];
 		}
 	}
 
@@ -402,4 +506,45 @@ RowAndCol Map::CreatePath(const BotFigure& fig)
 	/*********************************/
 
 	return steps[EngineFunctions::IntRandom(0, steps.size() - 1)];
+}
+
+void Map::Optimize()
+{
+	bool grid[3][3];
+
+	for (size_t i = 5; i < 8; i++)
+	{
+		for (size_t j = 5; j < 8; j++)
+		{
+			grid[i - 5][j - 5] = IsBotFigureExists(i, j);
+		}
+	}
+
+	for (size_t i = 5; i < 8; i++)
+	{
+		for (size_t j = 5; j < 8; j++)
+		{
+			if (grid[i - 5][j - 5] && i + 1 < 8)
+			{
+				if (!grid[i - 5 + 1][j - 5])
+				{
+					SwapGoals(GetBotFigure(i, j), GetBotFigureByGoal(i + 1, j));
+					GetBotFigure(i, j).MoveTo(i + 1, j);
+
+					return;
+				}
+			}
+			
+			if (grid[i - 5][j - 5] && j + 1 < 8) 
+			{			
+				if (!grid[i - 5][j - 5 + 1])
+				{
+					SwapGoals(GetBotFigure(i, j), GetBotFigureByGoal(i, j + 1));
+					GetBotFigure(i, j).MoveTo(i, j + 1);
+
+					return;
+				}
+			}
+		}
+	}
 }

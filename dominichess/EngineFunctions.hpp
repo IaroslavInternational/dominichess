@@ -53,8 +53,8 @@ namespace EngineFunctions
 
 	inline static int IntRandom(int min, int max)
 	{
-		std::random_device rd;   // non-deterministic generator
-		std::mt19937 gen(rd());  // to seed mersenne twister.
+		std::random_device rd;
+		std::mt19937 gen(rd());
 		std::uniform_int_distribution<> dist(min, max);
 
 		return dist(gen);

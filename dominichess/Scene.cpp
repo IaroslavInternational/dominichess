@@ -48,7 +48,7 @@ void Scene::ProcessInput(float dt)
 			map.Process(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
 		}
 	}
-
+	
 	/***********************/
 }
 

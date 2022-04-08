@@ -6,6 +6,12 @@ BotFigure::BotFigure(size_t row, size_t col, const std::string& imgPath, RowAndC
 	goal(goal)
 {}
 
+void BotFigure::SetGoal(size_t row, size_t col) noexcept
+{
+	goal.first  = row;
+	goal.second = col;
+}
+
 RowAndCol BotFigure::GetGoal() const noexcept
 {
 	return goal;

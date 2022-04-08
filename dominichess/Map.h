@@ -17,18 +17,29 @@ private:
 	void		UnSelectAll();
 	RowsAndCols GetAvailableSteps(size_t row, size_t col);
 	bool		IsFigureExists(size_t row, size_t col);
+	bool		IsBotFigureExists(size_t row, size_t col);
 private:
-	Cell&   GetCell(size_t row, size_t col);
-	Figure& GetFigure(size_t row, size_t col);
-	void	SetTitle(const std::string& txt) noexcept;
+	Cell&      GetCell(size_t row, size_t col);
+	Figure&    GetFigure(size_t row, size_t col);
+	BotFigure& GetBotFigure(size_t row, size_t col);
+	BotFigure& GetBotFigureByGoal(size_t row, size_t col);
+	void	   SwapGoals(BotFigure& lhs, BotFigure& rhs);
+	void	   SetTitle(const std::string& txt) noexcept;
+	void	   CountScore();
 private:
 	RowAndCol GenerateGoal();
 	RowAndCol CreatePath(const BotFigure& fig);
+	void	  Optimize();
 private:
 	std::vector<Cell>	   cells;
 	std::vector<BotFigure> bot_figures;
 	std::vector<Figure>	   figures;
+	std::vector<std::pair<Font, Vei2>> bot_figures_labels;
 	std::pair<Font, Vei2>  title;
-	std::string			   titleTxt = "Pick your figure!";
-	bool				   IsAITurn = false;
+	std::pair<Font, Vei2>  label_score;
+	std::string			   titleTxt  = "Pick your figure!";
+	bool				   IsAITurn  = false;
+	size_t				   AISteps   = 0;
+	size_t				   AIScore   = 0;
+	size_t				   UserScore = 0;
 };
