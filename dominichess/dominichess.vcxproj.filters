@@ -171,6 +171,9 @@
     <ClCompile Include="BotFigure.cpp">
       <Filter>Исходные файлы\Сцена</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="BotFigure.h">
       <Filter>Заголовочные файлы\Сцена</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

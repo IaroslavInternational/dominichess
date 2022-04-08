@@ -5,7 +5,7 @@
 
 Map::Map(size_t offset_x, size_t offset_y)
 	:
-	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y - 50}),
+	title(std::string("Assets\\Images\\Fixedsys16x28.bmp"),       {(int)offset_x, (int)offset_y - 50}),
 	label_score(std::string("Assets\\Images\\Fixedsys16x28.bmp"), {(int)offset_x, (int)offset_y + 625})
 {
 	{
@@ -69,23 +69,10 @@ void Map::Draw(Graphics& gfx)
 	}
 
 	std::ostringstream oss;
+	oss << "Your score: " << UserScore << " Mr. Robot's score: " << AIScore;
 
-	if (AIScore == 9)
-	{
-		oss << "AI Steps: " << AISteps;
-		title.first.DrawText(oss.str(), title.second, Colors::White, gfx);
-	}
-	else
-	{
-		oss.str("");
-
-		oss << "Your score: " << UserScore << " Mr. Robot's score: " << AIScore;
-
-		title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
-		label_score.first.DrawText(oss.str(), label_score.second, Colors::White, gfx);
-
-	}
-
+	title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
+	label_score.first.DrawText(oss.str(), label_score.second, Colors::White, gfx);
 }
 
 void Map::Process(int x, int y)

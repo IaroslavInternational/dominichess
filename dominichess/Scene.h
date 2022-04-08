@@ -2,12 +2,12 @@
 
 #include "Window.h"
 #include "Map.h"
+#include "Menu.h"
 
 class Scene
 {
 public:
-	Scene(std::string							  name,	
-		  std::shared_ptr<Window>				  wnd);
+	Scene(std::string name,	std::shared_ptr<Window> wnd);
 public:
 	/* Методы сцены */
 
@@ -28,5 +28,7 @@ private:
 
 	/******************************/
 private:
-	Map map;
+	Surface2D background;
+	Menu      menu;
+	Map       map;
 };

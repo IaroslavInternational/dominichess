@@ -296,6 +296,36 @@ void Graphics::SetViewPort(D3D11_VIEWPORT& vp)
 	pImmediateContext->RSSetViewports(1u, &vp);
 }
 
+void Graphics::DrawRectangle(int xs, int ys, int xe, int ye, Color c)
+{
+	for (size_t i = xs; i < xe; i++)
+	{
+		for (size_t j = ys; j < ye; j++)
+		{
+			PutPixel(i, j, c);
+		}
+	}
+}
+
+void Graphics::DrawGhostRectangle(int xs, int ys, int xe, int ye, Color c, float deep)
+{
+	for (size_t i = xs; i < xe; i++)
+	{
+		for (size_t j = ys; j < ye; j++)
+		{
+			const Color dstPixel = GetPixel(i, j);
+
+			const Color blendedPixel = {
+				unsigned char((dstPixel.GetR()) / deep),
+				unsigned char((dstPixel.GetG()) / deep),
+				unsigned char((dstPixel.GetB()) / deep)
+			};
+
+			PutPixel(i, j, blendedPixel);
+		}
+	}
+}
+
 void Graphics::DrawSpriteNonChroma(int x, int y, const Surface2D& s)
 {
 	DrawSpriteNonChroma(x, y, s.GetRect(), s);

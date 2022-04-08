@@ -78,6 +78,9 @@ public:
 public:
 	void SetViewPort(D3D11_VIEWPORT& vp);
 public:
+	void DrawRectangle(int xs, int ys, int xe, int ye, Color c);
+	void DrawGhostRectangle(int xs, int ys, int xe, int ye, Color c, float deep = 2.0f);
+public:
 	void DrawSpriteNonChroma(int x, int y, const Surface2D& s);
 	void DrawSpriteNonChroma(int x, int y, const RectI& srcRect, const Surface2D& s);
 	void DrawSpriteNonChroma(int x, int y, RectI srcRect, const RectI& clip, const Surface2D& s);

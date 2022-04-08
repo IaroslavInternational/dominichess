@@ -1,10 +1,11 @@
 #include "Scene.h"
 
-Scene::Scene(std::string							 name,
-			 std::shared_ptr<Window>				 wnd)
+Scene::Scene(std::string name, std::shared_ptr<Window> wnd)
 	:
 	name(name),
 	wnd(wnd),
+	background("Assets\\Images\\back.png"),
+	menu(wnd->Gfx().GetWidth(), wnd->Gfx().GetHeight()),
 	map(wnd->Gfx().GetWidth() / 2 - 300, wnd->Gfx().GetHeight() / 2 - 300)
 {
 }
@@ -55,8 +56,11 @@ void Scene::ProcessInput(float dt)
 void Scene::Render(float dt)
 {
 	/* Отрисовка */
+	
+	wnd->Gfx().DrawSpriteNonChroma(0, 0, background);
 
-	map.Draw(wnd->Gfx());
+	//map.Draw(wnd->Gfx());
+	menu.Draw(wnd->Gfx());
 
 	/*************/
 }
