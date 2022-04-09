@@ -174,6 +174,9 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -285,6 +288,9 @@
       <Filter>Заголовочные файлы\Сцена</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

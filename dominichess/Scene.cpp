@@ -26,27 +26,29 @@ void Scene::ProcessInput(float dt)
 		switch (e->GetCode())
 		{
 		case VK_ESCAPE:
-			if (wnd->CursorEnabled())
-			{
-				wnd->DisableCursor();
-				wnd->mouse.EnableRaw();
-			}
-			else
-			{
-				wnd->EnableCursor();
-				wnd->mouse.DisableRaw();
-			}
+			menu.Toggle();
 			break;
 		default:
 			break;
 		}
 	}
-
-	if (wnd->CursorEnabled())
+	
+	if (!menu.IsShown() && wnd->mouse.LeftIsPressed())
 	{
+		map.Process(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
+	}
+	else
+	{
+		menu.ProcessHover(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
+
 		if (wnd->mouse.LeftIsPressed())
 		{
-			map.Process(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
+			int response = menu.Click(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
+
+			if (response == 1)
+			{
+				map.Reload();
+			}
 		}
 	}
 	
@@ -59,7 +61,11 @@ void Scene::Render(float dt)
 	
 	wnd->Gfx().DrawSpriteNonChroma(0, 0, background);
 
-	//map.Draw(wnd->Gfx());
+	if (!menu.IsShown())
+	{
+		map.Draw(wnd->Gfx());
+	}
+
 	menu.Draw(wnd->Gfx());
 
 	/*************/

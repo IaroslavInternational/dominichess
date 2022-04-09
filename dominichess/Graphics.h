@@ -78,6 +78,7 @@ public:
 public:
 	void SetViewPort(D3D11_VIEWPORT& vp);
 public:
+	void DrawBorder(int xs, int ys, int xe, int ye, Color c);
 	void DrawRectangle(int xs, int ys, int xe, int ye, Color c);
 	void DrawGhostRectangle(int xs, int ys, int xe, int ye, Color c, float deep = 2.0f);
 public:

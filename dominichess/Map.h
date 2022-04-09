@@ -9,10 +9,13 @@ class Graphics;
 class Map
 {
 public:
+	friend class Menu;
+public:
 	Map(size_t offset_x, size_t offset_y);
 public:
 	void Draw(Graphics& gfx);
 	void Process(int x, int y);
+	void Reload();
 private:
 	void		UnSelectAll();
 	RowsAndCols GetAvailableSteps(size_t row, size_t col);

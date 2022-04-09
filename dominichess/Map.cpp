@@ -172,6 +172,11 @@ void Map::Process(int x, int y)
 	}
 }
 
+void Map::Reload()
+{
+
+}
+
 void Map::UnSelectAll()
 {
 	for (auto& c : cells)

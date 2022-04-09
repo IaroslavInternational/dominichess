@@ -296,6 +296,29 @@ void Graphics::SetViewPort(D3D11_VIEWPORT& vp)
 	pImmediateContext->RSSetViewports(1u, &vp);
 }
 
+void Graphics::DrawBorder(int xs, int ys, int xe, int ye, Color c)
+{
+	for (size_t i = xs; i < xe; i++)
+	{
+		PutPixel(i, ys, c);
+	}
+
+	for (size_t i = ys; i < ye; i++)
+	{
+		PutPixel(xs, i, c);
+	}
+
+	for (size_t i = xs; i < xe; i++)
+	{
+		PutPixel(i, ye, c);
+	}
+
+	for (size_t i = ys; i < ye; i++)
+	{
+		PutPixel(xe, i, c);
+	}
+}
+
 void Graphics::DrawRectangle(int xs, int ys, int xe, int ye, Color c)
 {
 	for (size_t i = xs; i < xe; i++)
