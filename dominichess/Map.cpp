@@ -172,9 +172,40 @@ void Map::Process(int x, int y)
 	}
 }
 
-void Map::Reload()
+void Map::Refresh()
 {
+	UnSelectAll();
 
+	size_t id = 0;
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 3; j++)
+		{
+			bot_figures[id].MoveTo(i, j);
+			bot_figures[id].SetGoal(i + 5, j + 5);
+
+			id++;
+		}
+	}
+
+	id = 0;
+
+	for (size_t i = 5; i < 8; i++)
+	{
+		for (size_t j = 5; j < 8; j++)
+		{
+			figures[id].MoveTo(i, j);
+
+			id++;
+		}
+	}
+
+	AISteps   = 0;
+	AIScore   = 0;
+	UserScore = 0;
+	IsAITurn  = false;
+	titleTxt  = "Pick your figure!";
 }
 
 void Map::UnSelectAll()

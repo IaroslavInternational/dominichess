@@ -15,7 +15,7 @@ public:
 public:
 	void Draw(Graphics& gfx);
 	void Process(int x, int y);
-	void Reload();
+	void Refresh();
 private:
 	void		UnSelectAll();
 	RowsAndCols GetAvailableSteps(size_t row, size_t col);
@@ -37,7 +37,6 @@ private:
 	std::vector<Cell>	   cells;
 	std::vector<BotFigure> bot_figures;
 	std::vector<Figure>	   figures;
-	std::vector<std::pair<Font, Vei2>> bot_figures_labels;
 	std::pair<Font, Vei2>  title;
 	std::pair<Font, Vei2>  label_score;
 	std::string			   titleTxt  = "Pick your figure!";

@@ -45,10 +45,19 @@ void Scene::ProcessInput(float dt)
 		{
 			int response = menu.Click(wnd->mouse.GetPosX(), wnd->mouse.GetPosY());
 
-			if (response == 1)
+			switch (response)
 			{
-				map.Reload();
-			}
+			case 0:
+				break;
+			case 1:
+				map.Refresh();
+				break;
+			case -1:
+				exit(0);
+				break;
+			default:
+				break;
+			}							
 		}
 	}
 	

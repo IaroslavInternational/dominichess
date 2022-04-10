@@ -48,8 +48,6 @@ void Menu::ProcessHover(int x, int y)
 	for (auto& b : btns)
 	{
 		b->get()->IsIntersect(x, y) ? b->get()->OnHover() : b->get()->OffHover();
-
-		break;
 	}
 }
 
@@ -58,7 +56,6 @@ int Menu::Click(int x, int y)
 	if (cont->IsIntersect(x, y))
 	{
 		IsActive = false;
-
 		return 0;
 	}
 	else if (restart->IsIntersect(x, y))
@@ -68,7 +65,8 @@ int Menu::Click(int x, int y)
 	}
 	else if (ex->IsIntersect(x, y))
 	{
-		exit(0);
+		IsActive = false;
+		return -1;		
 	}
 }
 
