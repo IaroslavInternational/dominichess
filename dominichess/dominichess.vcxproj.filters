@@ -94,6 +94,12 @@
     <Filter Include="Исходные файлы\Система\Графика\Текст">
       <UniqueIdentifier>{61c3fbb7-b71c-423d-9e75-9c6b8b1d58c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\Меню">
+      <UniqueIdentifier>{a7e0a9a2-806e-477f-a5b8-2231133bc074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Меню">
+      <UniqueIdentifier>{54a7ed6c-4ea9-49c4-9127-cf4f73970b95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp">
@@ -171,11 +177,11 @@
     <ClCompile Include="BotFigure.cpp">
       <Filter>Исходные файлы\Сцена</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Меню</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Исходные файлы\Меню</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,11 +293,11 @@
     <ClInclude Include="BotFigure.h">
       <Filter>Заголовочные файлы\Сцена</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Меню</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Заголовочные файлы\Меню</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -69,7 +69,7 @@ void Map::Draw(Graphics& gfx)
 	}
 
 	std::ostringstream oss;
-	oss << "Your score: " << UserScore << " Mr. Robot's score: " << AIScore;
+	oss << "Your score: " << UserScore << " | Mr. Robot's score: " << AIScore;
 
 	title.first.DrawText(titleTxt, title.second, Colors::White, gfx);
 	label_score.first.DrawText(oss.str(), label_score.second, Colors::White, gfx);
@@ -77,6 +77,17 @@ void Map::Draw(Graphics& gfx)
 
 void Map::Process(int x, int y)
 {
+	if (UserScore == 9)
+	{
+		titleTxt = "You won!";
+		return;
+	}
+	else if (AIScore == 9)
+	{
+		titleTxt = "You've lost!";
+		return;
+	}
+
 	if (!IsAITurn)
 	{
 		for (auto& c : cells)
@@ -127,7 +138,8 @@ void Map::Process(int x, int y)
 			}
 		}
 	}
-	else if(AIScore != 9)
+	
+	if(IsAITurn && AIScore != 9)
 	{
 		if (AISteps != 0 && AISteps % 4 == 0 && AIScore >= 3)
 		{
@@ -168,6 +180,7 @@ void Map::Process(int x, int y)
 		AISteps++;
 		IsAITurn = false;
 
+		SetTitle("Make a step!");
 		CountScore();
 	}
 }
@@ -409,28 +422,6 @@ void Map::CountScore()
 	}
 }
 
-RowAndCol Map::GenerateGoal()
-{
-	size_t rrow = EngineFunctions::IntRandom(5, 7);
-	size_t rcol = EngineFunctions::IntRandom(5, 7);
-
-	if (!bot_figures.empty())
-	{
-		for (size_t i = 0; i < bot_figures.size(); i++)
-		{
-			while (bot_figures[i].GetGoal().first == rrow && bot_figures[i].GetGoal().second == rcol)
-			{
-				rrow = EngineFunctions::IntRandom(5, 7);
-				rcol = EngineFunctions::IntRandom(5, 7);
-
-				i = 0;
-			}	
-		}
-	}
-
-	return { rrow, rcol };
-}
-
 RowAndCol Map::CreatePath(const BotFigure& fig)
 {
 	auto steps = GetAvailableSteps(fig.GetRow(), fig.GetCol());
@@ -549,7 +540,7 @@ void Map::Optimize()
 		{
 			if (grid[i - 5][j - 5] && i + 1 < 8)
 			{
-				if (!grid[i - 5 + 1][j - 5])
+				if (!grid[i - 4][j - 5])
 				{
 					SwapGoals(GetBotFigure(i, j), GetBotFigureByGoal(i + 1, j));
 					GetBotFigure(i, j).MoveTo(i + 1, j);
@@ -560,7 +551,7 @@ void Map::Optimize()
 			
 			if (grid[i - 5][j - 5] && j + 1 < 8) 
 			{			
-				if (!grid[i - 5][j - 5 + 1])
+				if (!grid[i - 5][j - 4])
 				{
 					SwapGoals(GetBotFigure(i, j), GetBotFigureByGoal(i, j + 1));
 					GetBotFigure(i, j).MoveTo(i, j + 1);

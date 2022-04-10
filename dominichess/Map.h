@@ -6,42 +6,41 @@
 
 class Graphics;
 
+// Игровое поле
 class Map
 {
 public:
-	friend class Menu;
-public:
 	Map(size_t offset_x, size_t offset_y);
 public:
-	void Draw(Graphics& gfx);
-	void Process(int x, int y);
-	void Refresh();
+	void Draw(Graphics& gfx);   // Отрисовка поля и фигур
+	void Process(int x, int y); // Обработка хода
+	void Refresh();				// Перезагрузка
 private:
-	void		UnSelectAll();
-	RowsAndCols GetAvailableSteps(size_t row, size_t col);
-	bool		IsFigureExists(size_t row, size_t col);
-	bool		IsBotFigureExists(size_t row, size_t col);
+	void		UnSelectAll();								// Убрать выделение
+	RowsAndCols GetAvailableSteps(size_t row, size_t col);	// Получить доступные для шага клетки
+	bool		IsFigureExists(size_t row, size_t col);		// Проверка существования фигур клетке
+	bool		IsBotFigureExists(size_t row, size_t col);	// Проверка существования фигуры бота клетке
 private:
-	Cell&      GetCell(size_t row, size_t col);
-	Figure&    GetFigure(size_t row, size_t col);
-	BotFigure& GetBotFigure(size_t row, size_t col);
-	BotFigure& GetBotFigureByGoal(size_t row, size_t col);
-	void	   SwapGoals(BotFigure& lhs, BotFigure& rhs);
-	void	   SetTitle(const std::string& txt) noexcept;
-	void	   CountScore();
+	Cell&      GetCell(size_t row, size_t col);			   // Получить клетку по координатам
+	Figure&    GetFigure(size_t row, size_t col);		   // Получить фигуру по координатам
+	BotFigure& GetBotFigure(size_t row, size_t col);	   // Получить фигуру бота по координатам
+	BotFigure& GetBotFigureByGoal(size_t row, size_t col); // Получить фигуру бота по её цели
+	void	   SwapGoals(BotFigure& lhs, BotFigure& rhs);  // Поментять местами цели фигуры бота
 private:
-	RowAndCol GenerateGoal();
-	RowAndCol CreatePath(const BotFigure& fig);
-	void	  Optimize();
+	void SetTitle(const std::string& txt) noexcept; // Установать заголовок
+	void CountScore();								// Вычисление счёта
 private:
-	std::vector<Cell>	   cells;
-	std::vector<BotFigure> bot_figures;
-	std::vector<Figure>	   figures;
-	std::pair<Font, Vei2>  title;
-	std::pair<Font, Vei2>  label_score;
-	std::string			   titleTxt  = "Pick your figure!";
-	bool				   IsAITurn  = false;
-	size_t				   AISteps   = 0;
-	size_t				   AIScore   = 0;
-	size_t				   UserScore = 0;
+	RowAndCol CreatePath(const BotFigure& fig);	// Получить путь к цели для фигуры бота
+	void	  Optimize();						// Оптимизировать положение фигур бота на победной сетке
+private:
+	std::vector<Cell>	   cells;							// Клетки
+	std::vector<BotFigure> bot_figures;						// Фигуры бота
+	std::vector<Figure>	   figures;							// Фигуры игрока
+	std::pair<Font, Vei2>  title;							// Заголовок
+	std::pair<Font, Vei2>  label_score;						// Надпись с инфорацией об очках
+	std::string			   titleTxt  = "Pick your figure!";	// Заголовок
+	bool				   IsAITurn  = false;				// Очерёдность хода для бота
+	size_t				   AISteps   = 0;					// Кол-во шагов бота
+	size_t				   AIScore   = 0;					// Кол-во очков бота
+	size_t				   UserScore = 0;					// Кол-во очков игрока
 };

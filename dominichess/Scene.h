@@ -7,7 +7,7 @@
 class Scene
 {
 public:
-	Scene(std::string name,	std::shared_ptr<Window> wnd);
+	Scene(std::string name, std::shared_ptr<Window> wnd);
 public:
 	/* Методы сцены */
 
@@ -17,18 +17,18 @@ public:
 	/****************/
 private:
 	/* Переменные описания сцены */
-	
+
 	std::string name; // Имя сцены
 
 	/*****************************/
 private:
 	/* Вспомогательные переменные */
-	
+
 	std::shared_ptr<Window> wnd; // Указатель на главное окно 
 
 	/******************************/
 private:
-	Surface2D background;
-	Menu      menu;
-	Map       map;
+	Surface2D background; // Задний фон
+	Menu      menu;		  // Меню
+	Map       map;		  // Игровое поле
 };
