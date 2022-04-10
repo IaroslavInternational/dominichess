@@ -409,7 +409,7 @@ void Map::CountScore()
 	{
 		if (bf.GetRow() > 4 && bf.GetCol() > 4)
 		{
-			UserScore++;
+			AIScore++;
 		}
 	}
 
